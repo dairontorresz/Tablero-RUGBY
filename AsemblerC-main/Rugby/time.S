@@ -49,7 +49,7 @@ RESETDEC:
 SUMDECSEG:  
 			//LDR     R4, =TIEMPO   //DECENAS SEG
 			LDR     R10, [TIEMPO,0x08]!
-			CMP     R10, #9    
+			CMP     R10, #5    
 			BEQ     RESETDECSEG
 			ADD     R10, #1
 			STR     R10, [TIEMPO]

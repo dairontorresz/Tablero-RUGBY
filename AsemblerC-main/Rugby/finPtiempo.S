@@ -73,7 +73,10 @@ FIN_PARTIDO:LDR     R6, [TIEMPO]
 
 
 			LDR     R6, [CONTAR]  //SI SON IGUALES SE DETIENE EL INCREMENTO hace de boton stop 
-			MOV     R5, #2
+		//	MOV     R5, #2
+		//------------prueba--------------
+			MOV     R5, #3
+		//--------------------------------
 			STR     R5, [CONTAR]
             B       FIN	
 						

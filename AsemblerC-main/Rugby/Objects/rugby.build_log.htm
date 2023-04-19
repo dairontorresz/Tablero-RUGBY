@@ -21,98 +21,137 @@ Target DLL:      lmidk-agdi.dll V???
 Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-C:\Users\Usuario1\Documents\5.UNIVERSIDAD-ELECTRONICA\ASM\ZIIIIIIIIIIIP\AsemblerC-main\AsemblerC-main\Rugby\rugby.uvprojx
-Project File Date:  04/04/2023
+C:\Users\Usuario1\Documents\5.UNIVERSIDAD-ELECTRONICA\ASM\RUGBY_ASM_C\AsemblerC-main\AsemblerC-main\Rugby\rugby.uvprojx
+Project File Date:  04/09/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-main.c(119): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+main.c(111): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
                 time(&tiempo,botonT); //LEE CUAL ES EL TIEMPO DEL PARTIDO
                      ^~~~~~~
 main.c(19): note: passing argument to parameter 'tiempo' here
 extern void time(volatile unsigned long *tiempo,int botonT);
                                          ^
-main.c(122): warning: implicit conversion changes signedness: 'int' to 'unsigned long' [-Wsign-conversion]
+main.c(115): warning: implicit conversion changes signedness: 'int' to 'unsigned long' [-Wsign-conversion]
                 Btodo[0]=bStart;
                         ~^~~~~~
-main.c(125): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+main.c(118): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
                 starTime(&tiempo,&reloj,&Btodo,&relojdos);  //le envia tiempo a reloj 
                          ^~~~~~~
 main.c(20): note: passing argument to parameter 'tiempo' here
 extern void starTime(volatile unsigned long *tiempo,volatile unsigned long *reloj, volatile unsigned long *Btodo, volatile unsigned long *relojdos);
                                              ^
-main.c(125): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+main.c(118): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
                 starTime(&tiempo,&reloj,&Btodo,&relojdos);  //le envia tiempo a reloj 
                                  ^~~~~~
 main.c(20): note: passing argument to parameter 'reloj' here
 extern void starTime(volatile unsigned long *tiempo,volatile unsigned long *reloj, volatile unsigned long *Btodo, volatile unsigned long *relojdos);
                                                                             ^
-main.c(125): warning: incompatible pointer types passing 'volatile unsigned long (*)[2]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+main.c(118): warning: incompatible pointer types passing 'volatile unsigned long (*)[2]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
                 starTime(&tiempo,&reloj,&Btodo,&relojdos);  //le envia tiempo a reloj 
                                         ^~~~~~
 main.c(20): note: passing argument to parameter 'Btodo' here
 extern void starTime(volatile unsigned long *tiempo,volatile unsigned long *reloj, volatile unsigned long *Btodo, volatile unsigned long *relojdos);
                                                                                                            ^
-main.c(125): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+main.c(118): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
                 starTime(&tiempo,&reloj,&Btodo,&relojdos);  //le envia tiempo a reloj 
                                                ^~~~~~~~~
 main.c(20): note: passing argument to parameter 'relojdos' here
 extern void starTime(volatile unsigned long *tiempo,volatile unsigned long *reloj, volatile unsigned long *Btodo, volatile unsigned long *relojdos);
                                                                                                                                           ^
-main.c(132): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+main.c(129): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
                 finPtiempo(&tiempo,&reloj,&contar,&puntajeEquipos);   //pregunta si ya llego al maximo tiempo para indicar el fin del partido   
                            ^~~~~~~
-main.c(23): note: passing argument to parameter 'tiempo' here
+main.c(26): note: passing argument to parameter 'tiempo' here
 extern void finPtiempo(volatile unsigned long *tiempo,volatile unsigned long *reloj,volatile unsigned long *contar,volatile unsigned long *puntajeEqipos);
                                                ^
-main.c(132): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+main.c(129): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
                 finPtiempo(&tiempo,&reloj,&contar,&puntajeEquipos);   //pregunta si ya llego al maximo tiempo para indicar el fin del partido   
                                    ^~~~~~
-main.c(23): note: passing argument to parameter 'reloj' here
+main.c(26): note: passing argument to parameter 'reloj' here
 extern void finPtiempo(volatile unsigned long *tiempo,volatile unsigned long *reloj,volatile unsigned long *contar,volatile unsigned long *puntajeEqipos);
                                                                               ^
-main.c(132): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+main.c(129): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
                 finPtiempo(&tiempo,&reloj,&contar,&puntajeEquipos);   //pregunta si ya llego al maximo tiempo para indicar el fin del partido   
                                                   ^~~~~~~~~~~~~~~
-main.c(23): note: passing argument to parameter 'puntajeEqipos' here
+main.c(26): note: passing argument to parameter 'puntajeEqipos' here
 extern void finPtiempo(volatile unsigned long *tiempo,volatile unsigned long *reloj,volatile unsigned long *contar,volatile unsigned long *puntajeEqipos);
                                                                                                                                            ^
-main.c(180): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+main.c(164): warning: implicit conversion changes signedness: 'int' to 'unsigned long' [-Wsign-conversion]
+                Btodo[0]=bStart;
+                        ~^~~~~~
+main.c(166): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+                starTime(&tiempo,&reloj,&Btodo,&relojdos);  //le envia tiempo a reloj 
+                         ^~~~~~~
+main.c(20): note: passing argument to parameter 'tiempo' here
+extern void starTime(volatile unsigned long *tiempo,volatile unsigned long *reloj, volatile unsigned long *Btodo, volatile unsigned long *relojdos);
+                                             ^
+main.c(166): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+                starTime(&tiempo,&reloj,&Btodo,&relojdos);  //le envia tiempo a reloj 
+                                 ^~~~~~
+main.c(20): note: passing argument to parameter 'reloj' here
+extern void starTime(volatile unsigned long *tiempo,volatile unsigned long *reloj, volatile unsigned long *Btodo, volatile unsigned long *relojdos);
+                                                                            ^
+main.c(166): warning: incompatible pointer types passing 'volatile unsigned long (*)[2]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+                starTime(&tiempo,&reloj,&Btodo,&relojdos);  //le envia tiempo a reloj 
+                                        ^~~~~~
+main.c(20): note: passing argument to parameter 'Btodo' here
+extern void starTime(volatile unsigned long *tiempo,volatile unsigned long *reloj, volatile unsigned long *Btodo, volatile unsigned long *relojdos);
+                                                                                                           ^
+main.c(166): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+                starTime(&tiempo,&reloj,&Btodo,&relojdos);  //le envia tiempo a reloj 
+                                               ^~~~~~~~~
+main.c(20): note: passing argument to parameter 'relojdos' here
+extern void starTime(volatile unsigned long *tiempo,volatile unsigned long *reloj, volatile unsigned long *Btodo, volatile unsigned long *relojdos);
+                                                                                                                                          ^
+main.c(205): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+                incre_tiemp(&tiempodos,&relojdos,bStart,&contar);
+                            ^~~~~~~~~~
+main.c(23): note: passing argument to parameter 'tiempodos' here
+extern void incre_tiemp(volatile unsigned long *tiempodos,volatile unsigned long *reloj,int bStart, volatile unsigned long *contar);
+                                                ^
+main.c(205): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+                incre_tiemp(&tiempodos,&relojdos,bStart,&contar);
+                                       ^~~~~~~~~
+main.c(23): note: passing argument to parameter 'reloj' here
+extern void incre_tiemp(volatile unsigned long *tiempodos,volatile unsigned long *reloj,int bStart, volatile unsigned long *contar);
+                                                                                  ^
+main.c(207): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
                 starTimeseg(&tiempo,&relojdos,bStart,&contar);  //le envia tiempo a reloj 
                             ^~~~~~~
 main.c(21): note: passing argument to parameter 'tiempo' here
 extern void starTimeseg(volatile unsigned long *tiempo,volatile unsigned long *reloj,int bStart, volatile unsigned long *contar);
                                                 ^
-main.c(180): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+main.c(207): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
                 starTimeseg(&tiempo,&relojdos,bStart,&contar);  //le envia tiempo a reloj 
                                     ^~~~~~~~~
 main.c(21): note: passing argument to parameter 'reloj' here
 extern void starTimeseg(volatile unsigned long *tiempo,volatile unsigned long *reloj,int bStart, volatile unsigned long *contar);
                                                                                ^
-main.c(187): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+main.c(212): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
                 finPartido(&tiempo,&relojdos,&contar,&puntajeEquipos);   //pregunta si ya llego al maximo tiempo para indicar el fin del partido
                            ^~~~~~~
-main.c(22): note: passing argument to parameter 'tiempo' here
+main.c(25): note: passing argument to parameter 'tiempo' here
 extern void finPartido(volatile unsigned long *tiempo,volatile unsigned long *reloj,volatile unsigned long *contar,volatile unsigned long *puntajeEqipos);
                                                ^
-main.c(187): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+main.c(212): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
                 finPartido(&tiempo,&relojdos,&contar,&puntajeEquipos);   //pregunta si ya llego al maximo tiempo para indicar el fin del partido
                                    ^~~~~~~~~
-main.c(22): note: passing argument to parameter 'reloj' here
+main.c(25): note: passing argument to parameter 'reloj' here
 extern void finPartido(volatile unsigned long *tiempo,volatile unsigned long *reloj,volatile unsigned long *contar,volatile unsigned long *puntajeEqipos);
                                                                               ^
-main.c(187): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
+main.c(212): warning: incompatible pointer types passing 'volatile unsigned long (*)[4]' to parameter of type 'volatile unsigned long *' [-Wincompatible-pointer-types]
                 finPartido(&tiempo,&relojdos,&contar,&puntajeEquipos);   //pregunta si ya llego al maximo tiempo para indicar el fin del partido
                                                      ^~~~~~~~~~~~~~~
-main.c(22): note: passing argument to parameter 'puntajeEqipos' here
+main.c(25): note: passing argument to parameter 'puntajeEqipos' here
 extern void finPartido(volatile unsigned long *tiempo,volatile unsigned long *reloj,volatile unsigned long *contar,volatile unsigned long *puntajeEqipos);
                                                                                                                                            ^
-14 warnings generated.
+21 warnings generated.
 compiling main.c...
 linking...
-Program Size: Code=3912 RO-data=636 RW-data=0 ZI-data=512  
-".\Objects\rugby.axf" - 0 Error(s), 14 Warning(s).
+Program Size: Code=4496 RO-data=636 RW-data=0 ZI-data=512  
+".\Objects\rugby.axf" - 0 Error(s), 21 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -138,10 +177,10 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:1.0.1
-      Include file:  Device/Include/TM4C123/TM4C123.h
       Source file:   Device/Source/system_TM4C123.c
       Source file:   Device/Source/ARM/startup_TM4C123.s
-Build Time Elapsed:  00:00:00
+      Include file:  Device/Include/TM4C123/TM4C123.h
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

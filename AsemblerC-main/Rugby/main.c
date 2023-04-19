@@ -19,6 +19,9 @@ extern void temB(volatile unsigned long *temBu,volatile unsigned long *temBd,int
 extern void time(volatile unsigned long *tiempo,int botonT);
 extern void starTime(volatile unsigned long *tiempo,volatile unsigned long *reloj, volatile unsigned long *Btodo, volatile unsigned long *relojdos);
 extern void starTimeseg(volatile unsigned long *tiempo,volatile unsigned long *reloj,int bStart, volatile unsigned long *contar);
+//-----------------prueba--------------------------
+extern void incre_tiemp(volatile unsigned long *tiempodos,volatile unsigned long *reloj,int bStart, volatile unsigned long *contar);
+//----------------------------------------------------
 extern void finPartido(volatile unsigned long *tiempo,volatile unsigned long *reloj,volatile unsigned long *contar,volatile unsigned long *puntajeEqipos);
 extern void finPtiempo(volatile unsigned long *tiempo,volatile unsigned long *reloj,volatile unsigned long *contar,volatile unsigned long *puntajeEqipos);
 
@@ -40,8 +43,6 @@ int main (void)
 	int botonP = 0;     //GUARDA LOS BOTONES QUE SE PULSARON PARA LOS PUNTOS (PUERTO A)
 	int botonT = 0;     //GUARDA LOS BOTONES PULSADOS PARA EL TIEMPO (PUERTO F)
 	int bStart = 0;     //boton start para que empiece a correr el tiempo del reloj
-	
-
 //	volatile unsigned long uMin = 0;
 //	volatile unsigned long dMin = 0;
 //	volatile unsigned long uSeg = 0;
@@ -51,13 +52,14 @@ int main (void)
 	volatile unsigned long relojdos[4]={0,0,0,0};    //dMin[0] uMin[1] dSeg[2]  uSeg[3] ->cuenta hasta el tiempo maximo
 	volatile unsigned long contar=0;     //mantiene el estado del boton bStart
 	volatile unsigned long Btodo[2]={0,0};     //mantiene el estado del boton bStart
-
+	//----------intento para sumar dos tiempod de 40 minutos---------------
+	volatile unsigned long tiempodos[4]={0,0,0,0};    //dMin[0] uMin[1] dSeg[2]  uSeg[3] ->GUARDA EL TIEMPO MAXIMO DEL PARTIDO
+	//---------------------------------------------------------------------
 	volatile unsigned long temAu	= 0; //equipo a unidades
 	volatile unsigned long temAd	= 0; //equipo a decenas
 	volatile unsigned long temBu	= 0; //equipo b unidades
 	volatile unsigned long temBd	= 0; //equipo b decenas
 	volatile unsigned long puntajeEquipos[4]={temAd,temAu,temBd,temBu}; //para guardar en un vector todos los puntajes
-	
 	volatile unsigned long puntaje=1;     //mantiene el estado del boton bStart
 //----------CONFIGURACION DE PUERTOS--------------------------------
 	init_PORTA();
@@ -66,8 +68,7 @@ int main (void)
 	init_PORTE();
 	init_PORTD();
 	init_PORTF();
-//------------CICLO INFINITO----------------------------------------
-	
+//------------CICLO INFINITO----------------------------------------	
 	while(1)
 	{
 		contador=0;
@@ -75,39 +76,30 @@ int main (void)
 				display(tiempo[0],&GPIO_PORTB_DATA_R);//
 				visUNO(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R,&GPIO_PORTF_DATA_R);//VISUALIZA 
 				delay_ms(5); 	//ESPERA
-				
 				display(tiempo[1],&GPIO_PORTB_DATA_R);
 				visDOS(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
 				delay_ms(5);
-				
 				display(tiempo[2],&GPIO_PORTB_DATA_R);
 				visTRES(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
 				delay_ms(5);
-				
 				display(tiempo[3],&GPIO_PORTB_DATA_R);
 				visCUATRO(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
 				delay_ms(5);
-			
 				display(temAd,&GPIO_PORTB_DATA_R); // temAd  reloj[0]
 				visCINCO(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
 				delay_ms(5);	
-			
 			  display(temAu,&GPIO_PORTB_DATA_R);  //   reloj[1] temAu   
 				visSEIS(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
 				delay_ms(5);	
-				
 				display(temBd,&GPIO_PORTB_DATA_R);  //    temBd
 				visSIETE(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
 				delay_ms(5);	
-				
 				display(temBu,&GPIO_PORTB_DATA_R);    //    temBu
 				visOCHO(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
 				delay_ms(5);
-				
-				display(puntaje,&GPIO_PORTB_DATA_R);    //  
+				display(puntaje,&GPIO_PORTB_DATA_R);    // puntaje 
 				visNUEVE(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R,&GPIO_PORTF_DATA_R);
 				delay_ms(5);
-      
 				contador=contador+1;
 		}
 		botonP = botonesPuntos(&GPIO_PORTA_DATA_R);// LEE LOS BOTONES DEL PUERTO A PARA MARCAR LOS PUNTOS
@@ -119,74 +111,106 @@ int main (void)
 		time(&tiempo,botonT); //LEE CUAL ES EL TIEMPO DEL PARTIDO
 		
 		bStart = botonStart(&GPIO_PORTE_DATA_R); // lee los botones del pueto e el p0 permite iniciar a contar, p1 -> detiene el contador
+		
 		Btodo[0]=bStart;
 		Btodo[1]=contar;
 		
 		starTime(&tiempo,&reloj,&Btodo,&relojdos);  //le envia tiempo a reloj 
-		
 		puntajeEquipos[0]=temAd; // guarda todos los puntajes en un vector
 		puntajeEquipos[1]=temAu;
 		puntajeEquipos[2]=temBd;
 		puntajeEquipos[3]=temBu; 
-		
+		//--------------prueba-------------------
+		tiempodos[0]=tiempo[0];
+		tiempodos[1]=tiempo[1];
+		tiempodos[2]=tiempo[2];
+		tiempodos[3]=tiempo[3];
+		//---------------------------------
 		finPtiempo(&tiempo,&reloj,&contar,&puntajeEquipos);   //pregunta si ya llego al maximo tiempo para indicar el fin del partido	
 		
-		while(contar==2){
-			contador1=0;
-		while(contador1<40){ // 20 para vectores
-				display(tiempo[0],&GPIO_PORTB_DATA_R);//
+		while(contar==3){//prueba
+		contador=0;
+		while(contador<40){ // 20 para vectores
+				display(tiempodos[0],&GPIO_PORTB_DATA_R);//
 				visUNO(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R,&GPIO_PORTF_DATA_R);//VISUALIZA 
 				delay_ms(5); 	//ESPERA
-				
-				display(tiempo[1],&GPIO_PORTB_DATA_R);
+				display(tiempodos[1],&GPIO_PORTB_DATA_R);
 				visDOS(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
 				delay_ms(5);
-				
-				display(tiempo[2],&GPIO_PORTB_DATA_R);
+				display(tiempodos[2],&GPIO_PORTB_DATA_R);
 				visTRES(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
 				delay_ms(5);
-				
-				display(tiempo[3],&GPIO_PORTB_DATA_R);
+				display(tiempodos[3],&GPIO_PORTB_DATA_R);
 				visCUATRO(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
 				delay_ms(5);
-			
 				display(temAd,&GPIO_PORTB_DATA_R); // temAd  reloj[0]
 				visCINCO(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
 				delay_ms(5);	
-			
-			  display(temAu,&GPIO_PORTB_DATA_R);  //   reloj[1]   
+			  display(temAu,&GPIO_PORTB_DATA_R);  //   reloj[1] temAu   
 				visSEIS(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
 				delay_ms(5);	
-				
-				display(temBd,&GPIO_PORTB_DATA_R);  // temBd   
+				display(temBd,&GPIO_PORTB_DATA_R);  //    temBd
 				visSIETE(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
 				delay_ms(5);	
-				
-				display(temBu,&GPIO_PORTB_DATA_R);    //  temBu  
+				display(temBu,&GPIO_PORTB_DATA_R);    //    temBu
 				visOCHO(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
 				delay_ms(5);
-				
-				display(2,&GPIO_PORTB_DATA_R);    //  
+				display(puntaje,&GPIO_PORTB_DATA_R);    //  
 				visNUEVE(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R,&GPIO_PORTF_DATA_R);
 				delay_ms(5);
-				
-				contador1=contador1+1;
+				contador=contador+1;
+		}
+		bStart = botonStart(&GPIO_PORTE_DATA_R); // lee los botones del pueto e el p0 permite iniciar a contar, p1 -> detiene el contador
+		Btodo[0]=bStart;
+		Btodo[1]=contar;
+		starTime(&tiempo,&reloj,&Btodo,&relojdos);  //le envia tiempo a reloj 
+		}  //termina w de prueba 
+		while(contar==2){
+		contador1=0;
+		while(contador1<40){ // 20 para vectores
+		display(tiempodos[0],&GPIO_PORTB_DATA_R);//
+		visUNO(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R,&GPIO_PORTF_DATA_R);//VISUALIZA 
+		delay_ms(5); 	//ESPERA
+		display(tiempodos[1],&GPIO_PORTB_DATA_R);
+		visDOS(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
+		delay_ms(5);
+		display(tiempodos[2],&GPIO_PORTB_DATA_R);
+		visTRES(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
+		delay_ms(5);
+		display(tiempodos[3],&GPIO_PORTB_DATA_R);
+		visCUATRO(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
+		delay_ms(5);
+		display(temAd,&GPIO_PORTB_DATA_R); // temAd  reloj[0]
+		visCINCO(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
+		delay_ms(5);	
+		display(temAu,&GPIO_PORTB_DATA_R);  //   reloj[1]   
+		visSEIS(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
+		delay_ms(5);	
+		display(temBd,&GPIO_PORTB_DATA_R);  // temBd   
+		visSIETE(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
+		delay_ms(5);	
+		display(temBu,&GPIO_PORTB_DATA_R);    //  temBu  
+		visOCHO(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
+		delay_ms(5);
+		display(2,&GPIO_PORTB_DATA_R);    //  
+		visNUEVE(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R,&GPIO_PORTF_DATA_R);
+		delay_ms(5);
+		contador1=contador1+1;
 		}
 		botonP = botonesPuntos(&GPIO_PORTA_DATA_R);// LEE LOS BOTONES DEL PUERTO A PARA MARCAR LOS PUNTOS
 		temA(&temAu,&temAd,botonP);//MARCA LOS PUNTOS DEL EQUIPO A
 		botonP = botonesPuntos(&GPIO_PORTA_DATA_R);// LEE LOS BOTONES DEL PUERTO A PARA MARCAR LOS PUNTOS
 		temB(&temBu,&temBd,botonP);//MARCA LOS PUNTOS DEL EQUIPO B
-		
+		//------------------------prueba---------------------
+		incre_tiemp(&tiempodos,&relojdos,bStart,&contar);
+		//---------------------------------------------------
 		starTimeseg(&tiempo,&relojdos,bStart,&contar);  //le envia tiempo a reloj 
-		
 		puntajeEquipos[0]=temAd; // guarda todos los puntajes en un vector
 		puntajeEquipos[1]=temAu;
 		puntajeEquipos[2]=temBd;
 		puntajeEquipos[3]=temBu; 
-		
 		finPartido(&tiempo,&relojdos,&contar,&puntajeEquipos);   //pregunta si ya llego al maximo tiempo para indicar el fin del partido
 		puntaje=reloj[1];
-		}
-		
+		}	
 	}
 }

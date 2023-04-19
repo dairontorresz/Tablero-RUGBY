@@ -524,6 +524,11 @@
               <FileType>2</FileType>
               <FilePath>.\starTimeseg.S</FilePath>
             </File>
+            <File>
+              <FileName>incre_tiemp.S</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\incre_tiemp.S</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

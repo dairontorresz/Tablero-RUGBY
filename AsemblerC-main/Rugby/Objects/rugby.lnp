@@ -27,6 +27,7 @@
 ".\objects\visnueve.o"
 ".\objects\finptiempo.o"
 ".\objects\startimeseg.o"
+".\objects\incre_tiemp.o"
 ".\objects\tm4c123gh6pm.o"
 ".\objects\startup_tm4c123.o"
 ".\objects\system_tm4c123.o"

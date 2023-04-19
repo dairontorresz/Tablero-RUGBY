@@ -17,6 +17,7 @@ extern void visCUATRO(volatile unsigned long *GPIOE,volatile unsigned long *GPIO
 extern void increm(volatile unsigned long *vara,volatile unsigned long *varb,int portF,volatile unsigned long *pulUP);
 extern void decrem(volatile unsigned long *varc,volatile unsigned long *vard,int portF,volatile unsigned long *pulDOWN);
 extern void display(volatile unsigned long R0,volatile unsigned long *GPIOB);
+extern void visualizar(volatile unsigned long *contadores,volatile unsigned long *GPIOB,volatile unsigned long *PUERTOE,volatile unsigned long *PUERTOD);
 
 int main (void)
 {	
@@ -32,6 +33,7 @@ int main (void)
 	  volatile unsigned long pulDOWN = 4;
 	
 	  int count = 0;
+	  volatile unsigned long contadores[4] = {0,0,0,0};
 //----------CONFIGURACION DE PUERTOS--------------------------------
 	init_PORTB();
 	init_PORTE();
@@ -41,6 +43,12 @@ int main (void)
 	
 	while(1)
 	{
+		contadores[0]=varb;
+		contadores[1]=vara;
+		contadores[2]=vard;
+		contadores[3]=varc;
+		visualizar(&contadores,&GPIO_PORTB_DATA_R,&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
+		/*
 		count=0;
 			while(count<400){ //vusializa 200 veces el mismo numero
 				display(varb,&GPIO_PORTB_DATA_R);
@@ -58,13 +66,13 @@ int main (void)
 				display(varc,&GPIO_PORTB_DATA_R);
 				visCUATRO(&GPIO_PORTE_DATA_R,&GPIO_PORTD_DATA_R);
 				delay_ms(2);
-				
 				count=count+1;
-			}	
+			}	*/
 		portF = leer(&GPIO_PORTF_DATA_R);
 		increm(&vara,&varb,portF,&pulUP);
 	  portF = leer(&GPIO_PORTF_DATA_R);
 		decrem(&varc,&vard,portF,&pulDOWN);
+		
 
 	}
 }

@@ -469,6 +469,11 @@
               <FileType>2</FileType>
               <FilePath>.\decrem.S</FilePath>
             </File>
+            <File>
+              <FileName>visualizar.S</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\visualizar.S</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
